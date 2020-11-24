@@ -77,7 +77,7 @@ def get_l2_data():
   return res
 
 
-#返回非湖北地区城市确诊人数前5名
+#返回城市确诊人数前5名
 def get_r1_data():
 
     sql = 'SELECT city,confirm FROM ' \
