@@ -2,9 +2,9 @@
 
 import unittest
 from selenium import webdriver
-
+path='/usr/local/bin/chromedriver'
 from base import Base
-# WebDriver driver = new FirefoxDriver()
+
 class TestKlogin(unittest.TestCase):
 
     #定位手机号
@@ -22,11 +22,11 @@ class TestKlogin(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome()
+        cls.driver = webdriver.Chrome(executable_path=path)
         cls.baselei = Base(cls.driver)
 
     def setUp(self):
-        self.driver.get("url地址")
+        self.driver.get("http://127.0.0.1:5000")
 
     def tearDown(self):
         # 清空cookies
@@ -37,9 +37,9 @@ class TestKlogin(unittest.TestCase):
 
 
     def test_01_loginsuccess(self):
-        '''正确输入手机号和密码'''
-        self.baselei.send(self.username,"lyx")
-        self.baselei.send(self.psw,"111")
+        '''正确输入用户名和密码'''
+        self.baselei.send(self.username,"111")
+        self.baselei.send(self.psw,"222")
         self.baselei.click(self.loginbutton)
         result1=self.baselei.is_element_exist(self.help)
         self.assertTrue(result1)
@@ -49,25 +49,27 @@ class TestKlogin(unittest.TestCase):
         self.baselei.click(self.loginbutton)
         result2 =self.baselei.find(self.message).text
         print("我是内容test02：",result2)
-        exp2 = "请输入手机号码"
+        exp2 = "输入信息不全，请重新输入"
         self.assertEqual(result2,exp2)
 
     def test_03_shuruname(self):
-        '''只输入手机号，不输入密码'''
-        self.baselei.send(self.username,"lyx")
+        '''只输入用户名，不输入密码'''
+        self.baselei.send(self.username,"111")
         self.baselei.click(self.loginbutton)
         result3 = self.baselei.find(self.message).text
+        #result3=self.baselei.is_element_exist(self.message)
         print("我是内容test03：",result3)
-        exp3="请输入密码"
+        exp3="输入信息不全，请重新输入"
         self.assertTrue(result3==exp3)
+        #self.assertTrue(result3)
 
     def test_04_shurupsw(self):
-        '''只输入密码，不输入手机号'''
-        self.baselei.send(self.psw,"111")
+        '''只输入密码，不输入用户名'''
+        self.baselei.send(self.psw,"222")
         self.baselei.click(self.loginbutton)
         result4 = self.baselei.find(self.message).text
         print("我是内容test04:",result4)
-        exp4="请输入手机号码"
+        exp4="输入信息不全，请重新输入"
         self.assertTrue(result4==exp4)
 
     def test_05_shurufail(self):
@@ -77,7 +79,8 @@ class TestKlogin(unittest.TestCase):
         self.baselei.click(self.loginbutton)
         result5 = self.baselei.find(self.message).text
         print("我是内容test05",result5)
-        exp5 = "账号不存在"
+        exp5 = "用户不存在，请重新输入"
+        #self.assertTrue(result4==exp4)
         self.assertEqual(result5,exp5)
 
 

@@ -24,10 +24,14 @@ class Base():
 
     def is_element_exist(self,locator):
         '''判断元素是否存在'''
-        els=self.finds(locator)
+        els=self.find(locator)
+        return True
+        """
+        print(els)
         count = len(els) #计算元素个数
         if len(els) < 1:
             return False
         else:
             print("定位到的元素个数：%s"%count)
             return True
+        """

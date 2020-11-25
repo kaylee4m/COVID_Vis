@@ -47,7 +47,7 @@ def login_test():
         if not regName or not pwd:
             flash('输入信息不全，请重新输入', 'warning')
         elif not loginUser:
-            flash('用户不存在', 'warning')
+            flash('用户不存在，请重新输入', 'warning')
         else:
             if loginUser.pwd != pwd:
                 flash('密码错误，请重新输入', 'warning')
@@ -68,7 +68,7 @@ def zhuce():
         if not regName or not pwd or not pwdRepeat or not email:
             flash('信息输入不全，请重新输入', 'warning')
         elif loginUser:
-            flash('用户已经存在', 'warning')
+            flash('用户已经存在，请重新输入', 'warning')
         else:
             user = LoginUsers(regName, pwd, pwdRepeat, email)
  
