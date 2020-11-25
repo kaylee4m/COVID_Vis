@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人用户注册</title>
+</head>
+<body>
+<h3>个人用户注册</h3>
+    <hr/>
+        <div class="logo-con w clearfix">
+            <div class="logo-title">欢迎注册</div>
+            <div class="have-account">已有账号？ <a href="http://127.0.0.1:5000/">请登录&gt;</a></div>
+        </div>
+<b>
+    {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</b>
+ 
+        <form  method = "post">
+     <label for = "regName">用　户　名</label>
+     <input type = "text" name = "regName" placeholder="您的账户名和登录名" /><br>
+     <label for = "password">设 置 密 码</label>
+     <input type = "text" name = "pwd" placeholder = "建议使用两种或两种以上字符组合" /><br>
+     <label for = "pwdRepeat">确 认 密 码</label>
+     <input type = "text" name = "pwdRepeat" placeholder = "请再次输入密码" /><br>
+     <label for = "email">邮 箱</label>
+     <input type="text" name="email" autocomplete="off" maxlength="50" placeholder="请输入邮箱" ><br>
+     <input type = "submit" value = "立即注册" />
+    </form>
+</body>
+</html>

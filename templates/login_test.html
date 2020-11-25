@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+</head>
+<body>
+<!-- 以下是flask消息闪现在模板中接收消息，即flash()的消息会在此显示 -->
+<b>
+    {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</b>
+    <form method="post">
+        <input type = "text" name = "regName" placeholder="您的账户名和登录名" /><br>
+        <input type = "text" name = "pwd" placeholder="密码" /><br>
+        <input type = "submit" value = "登&nbsp;&nbsp;&nbsp;&nbsp;录" />
+    </form>
+        <!--<div class="item item-fore5">-->
+        <!--    <a href="" class="" target="_blank">忘记密码</a> -->
+        <!--</div>-->
+        
+        <div class="item item-fore5">
+            <a href="http://127.0.0.1:5000/zhuce/" >注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+        </div>
+<!-- 以下是将添加的用户信息显示在浏览器中 -->
+<!-- 
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>密码</th>
+               <th>密码2</th>
+               <th>邮箱</th>
+            </tr>
+         </thead>
+ 
+         <tbody>
+            {% for user in users %}
+               <tr>
+                  <td>{{ user.regName }}</td>
+                  <td>{{ user.pwd }}</td>
+                  <td>{{ user.pwdRepeat }}</td>
+                  <td>{{ user.email }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+ -->     
+</body>
+</html>

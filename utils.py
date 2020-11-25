@@ -13,7 +13,7 @@ def get_conn():
     # 创建连接
     conn = pymysql.connect(host="127.0.0.1",
                            user="root",
-                           password="ningning665523",
+                           password="111111",
                            db="cov",
                            charset="utf8")
     # 创建游标
@@ -83,7 +83,7 @@ def get_r1_data():
     sql = 'SELECT city,confirm FROM ' \
           '(select city,confirm from details  ' \
           'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province not in ("北京","上海","天津","重庆","香港","台湾") ' \
+          'and province not in ("湖北","北京","上海","天津","重庆","香港","台湾") ' \
           'union all ' \
           'select province as city,sum(confirm) as confirm from details  ' \
           'where update_time=(select update_time from details order by update_time desc limit 1) ' \
@@ -97,6 +97,7 @@ def get_r2_data():
     sql = 'select content from hotsearch order by id desc limit 20'
     res = query(sql)  # 格式 (('民警抗疫一线奋战16天牺牲1037364',), ('四川再派两批医疗队1537382',)
     return res
+
 
 
 # if __name__ == "__main__":

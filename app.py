@@ -4,13 +4,86 @@ from flask import jsonify
 from jieba.analyse import extract_tags
 import utils
 import string
+import mysql.connector
 
+#导入数据库模块
+import pymysql
 
+#导入前台请求的request模块
+from flask import request   
 
+import traceback 
 app = Flask(__name__)
 
+from flask import flash, url_for, redirect
+from flask_sqlalchemy import SQLAlchemy
+import config
 
-@app.route('/')
+
+#数据库配置
+app.config.from_object(config)
+app.config["SECRET_KEY"] = "12345678"
+db = SQLAlchemy(app)
+ 
+class LoginUsers(db.Model):
+    id = db.Column('student_id', db.Integer, primary_key=True)
+    regName = db.Column(db.String(100))
+    pwd = db.Column(db.String(200))
+    pwdRepeat = db.Column(db.String(200))
+    email = db.Column(db.String(200))
+ 
+    def __init__(self, regName, pwd, pwdRepeat, email):
+        self.regName = regName
+        self.pwd = pwd
+        self.pwdRepeat = pwdRepeat
+        self.email = email
+ 
+@app.route('/',methods=['GET','POST'])
+def login_test():
+    if request.method == 'POST':
+        regName = request.form['regName']
+        pwd = request.form['pwd']
+        loginUser = LoginUsers.query.filter_by(regName=regName).first()
+        if not regName or not pwd:
+            flash('输入信息不全，请重新输入', 'warning')
+        elif not loginUser:
+            flash('用户不存在', 'warning')
+        else:
+            if loginUser.pwd != pwd:
+                flash('密码错误，请重新输入', 'warning')
+            else:
+                flash('登录成功！！')
+                return redirect(url_for('login_success'))
+    return render_template('login_test.html', users=LoginUsers.query.all())
+ 
+@app.route('/zhuce/', methods=['GET', 'POST'])
+def zhuce():
+    if request.method == 'POST':
+        regName = request.form['regName']
+        pwd = request.form['pwd']
+        pwdRepeat = request.form['pwdRepeat']
+        email = request.form['email']
+        loginUser = LoginUsers.query.filter_by(regName=regName).first()
+        if not regName or not pwd or not pwdRepeat or not email:
+            flash('信息输入不全，请重新输入', 'warning')
+        elif loginUser:
+            flash('用户已经存在', 'warning')
+        else:
+            user = LoginUsers(regName, pwd, pwdRepeat, email)
+ 
+            db.session.add(user)
+            db.session.commit()
+            flash('用户添加成功')
+            return redirect(url_for('login_test'))
+    return render_template('zhuce.html')
+ 
+@app.route('/login_success/',methods=['GET','POST'])
+def login_success():
+    return render_template('main.html')
+    
+#db.create_all()   
+    
+@app.route('/main')
 def hello_world():
     return render_template('main.html')
 
@@ -75,9 +148,6 @@ def get_r2_data():
     return jsonify({"kws": d})
 
 
-
-
-
 @app.route('/time')
 def gettime():
 	return utils.get_time()
@@ -92,4 +162,4 @@ def hello_world4():
     return '10000'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
