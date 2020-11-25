@@ -1,8 +1,9 @@
-var ec_center = echarts.init(document.getElementById('c2'), "dark");
+var ec_center = echarts.init(document.getElementById('c2'));
 
 var mydata = [{'name': '上海', 'value': 318}, {'name': '云南', 'value': 162}]
 
 var ec_center_option = {
+    backgroundColor:'white',
     title: {
         text: '',
         subtext: '',
@@ -24,7 +25,7 @@ var ec_center_option = {
 			{ start: 100, end: 999 },
             {  start: 1000, end: 9999 },
             { start: 10000 }],
-        color: ['#8A3310', '#C64918', '#E55B25', '#F2AD92', '#F9DCD1']
+        color: ['#800000', '#B22222', '#CD5C5C', '#BC8F8F', '#F08080']
     },
     //配置属性
     series: [{

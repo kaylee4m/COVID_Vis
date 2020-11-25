@@ -1,11 +1,12 @@
-var ec_left1 = echarts.init(document.getElementById('l1'), "dark");
+var ec_left1 = echarts.init(document.getElementById('l1'));
 
 var ec_left1_Option = {
+	// backgroundColor:'white',
 	//标题样式
 	title: {
 		text: "全国累计趋势",
 		textStyle: {
-			// color: 'white',
+			color: 'black',
 		},
 		left: 'left',
 	},
@@ -15,7 +16,7 @@ var ec_left1_Option = {
 		axisPointer: {
 			type: 'line',
 			lineStyle: {
-				color: '#7171C6'
+				color: ' black'
 			}
 		},
 	},
@@ -25,13 +26,13 @@ var ec_left1_Option = {
 	},
 
 	//图形位置
-	grid: {
-		left: '4%',
-		right: '6%',
-		bottom: '4%',
-		top: 50,
-		containLabel: true
-	},
+	// grid: {
+	// 	left: '4%',
+	// 	right: '6%',
+	// 	bottom: '4%',
+	// 	top: 50,
+	// 	containLabel: true
+	// },
 	xAxis: [{
 		type: 'category',
 		//x轴坐标点开始与结束点位置都不在最边缘
@@ -44,7 +45,7 @@ var ec_left1_Option = {
 		//y轴字体设置
 		axisLabel: {
 			show: true,
-			color: 'white',
+			color: 'black',
 			fontSize: 12,
 			formatter: function(value) {
 				if (value >= 1000) {
@@ -61,7 +62,7 @@ var ec_left1_Option = {
 		splitLine: {
 			show: true,
 			lineStyle: {
-				color: '#17273B',
+				color: 'black',
 				width: 1,
 				type: 'solid',
 			}

@@ -4,7 +4,7 @@ from flask import jsonify
 from jieba.analyse import extract_tags
 import utils
 import string
-import mysql.connector
+# import mysql.connector
 
 #导入数据库模块
 import pymysql
@@ -57,6 +57,7 @@ def login_test():
     return render_template('login_test.html', users=LoginUsers.query.all())
  
 @app.route('/zhuce/', methods=['GET', 'POST'])
+
 def zhuce():
     if request.method == 'POST':
         regName = request.form['regName']
@@ -81,7 +82,7 @@ def zhuce():
 def login_success():
     return render_template('main.html')
     
-#db.create_all()   
+# db.create_all()   
     
 @app.route('/main')
 def hello_world():

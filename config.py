@@ -3,7 +3,7 @@
 DIALECT = 'mysql'  # 要用的什么数据库
 DRIVER = 'pymysql' # 连接数据库驱动
 USERNAME = 'root'  # 用户名
-PASSWORD ='111111'  # 密码
+PASSWORD ='ningning665523'  # 密码
 HOST = '127.0.0.1'  # 服务器
 PORT ='3306' # 端口
 DATABASE = 'cov' # 数据库名

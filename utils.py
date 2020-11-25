@@ -13,17 +13,10 @@ def get_conn():
 
     # 创建连接
     conn = pymysql.connect(host="127.0.0.1",
-<<<<<<< HEAD
                            user="root",
-                           password="111111",
+                           password="ningning665523",
                            db="cov",
                            charset="utf8")
-=======
-                        user="root",
-                        password="ningning665523",
-                        db="cov",
-                        charset="utf8")
->>>>>>> 3d5e099b86d62b081a999df1ae2849706cd205e3
     # 创建游标
     cursor = conn.cursor()# 执行完毕返回的结果集默认以元组显示
     return conn, cursor
@@ -89,16 +82,6 @@ def get_l2_data():
 def get_r1_data():
 
     sql = 'SELECT city,confirm FROM ' \
-<<<<<<< HEAD
-          '(select city,confirm from details  ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province not in ("湖北","北京","上海","天津","重庆","香港","台湾") ' \
-          'union all ' \
-          'select province as city,sum(confirm) as confirm from details  ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province in ("北京","上海","天津","重庆","香港","台湾") group by province) as a ' \
-          'ORDER BY confirm DESC LIMIT 5'
-=======
         '(select city,confirm from details  ' \
         'where update_time=(select update_time from details order by update_time desc limit 1) ' \
         'and province not in ("北京","上海","天津","重庆","香港","台湾") ' \
@@ -107,7 +90,6 @@ def get_r1_data():
         'where update_time=(select update_time from details order by update_time desc limit 1) ' \
         'and province in ("北京","上海","天津","重庆","香港","台湾") group by province) as a ' \
         'ORDER BY confirm DESC LIMIT 5'
->>>>>>> 3d5e099b86d62b081a999df1ae2849706cd205e3
     res = query(sql)
     # print(res)
     return res
