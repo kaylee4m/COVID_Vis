@@ -1,3 +1,4 @@
+# coding=UTF-8
 import time
 import pymysql
 
@@ -12,10 +13,10 @@ def get_conn():
 
     # 创建连接
     conn = pymysql.connect(host="127.0.0.1",
-                           user="root",
-                           password="ningning665523",
-                           db="cov",
-                           charset="utf8")
+                        user="root",
+                        password="ningning665523",
+                        db="cov",
+                        charset="utf8")
     # 创建游标
     cursor = conn.cursor()# 执行完毕返回的结果集默认以元组显示
     return conn, cursor
@@ -45,51 +46,52 @@ def get_c1_data():
     """
     # 因为会更新多次数据，取时间戳最新的那组数据
     sql = "select sum(confirm)," \
-          "(select suspect from history order by ds desc limit 1)," \
-          "sum(heal)," \
-          "sum(dead) " \
-          "from details " \
-          "where update_time=(select update_time from details order by update_time desc limit 1) "
+        "(select suspect from history order by ds desc limit 1)," \
+        "sum(heal)," \
+        "sum(dead) " \
+        "from details " \
+        "where update_time=(select update_time from details order by update_time desc limit 1) "
     res = query(sql)
     return res[0]
 
 #返回各省数据
 def get_c2_data():
-      # 因为会更新多次数据，取时间戳最新的那组数据
+    # 因为会更新多次数据，取时间戳最新的那组数据
     sql = "select province,sum(confirm) from details " \
-          "where update_time=(select update_time from details " \
-          "order by update_time desc limit 1) " \
-          "group by province"
+        "where update_time=(select update_time from details " \
+        "order by update_time desc limit 1) " \
+        "group by province"
     res = query(sql)
     return res
 
 
 def get_l1_data():
 
-  sql = "select ds,confirm,suspect,heal,dead from history"
-  res = query(sql)
-  return res
+    sql = "select ds,confirm,suspect,heal,dead from history"
+    res = query(sql)
+    return res
 
 def get_l2_data():
 
-  sql = "select ds,confirm_add,suspect_add from history"
-  res = query(sql)
-  return res
+    sql = "select ds,confirm_add,suspect_add from history"
+    res = query(sql)
+    return res
 
 
 #返回城市确诊人数前5名
 def get_r1_data():
 
     sql = 'SELECT city,confirm FROM ' \
-          '(select city,confirm from details  ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province not in ("北京","上海","天津","重庆","香港","台湾") ' \
-          'union all ' \
-          'select province as city,sum(confirm) as confirm from details  ' \
-          'where update_time=(select update_time from details order by update_time desc limit 1) ' \
-          'and province in ("北京","上海","天津","重庆","香港","台湾") group by province) as a ' \
-          'ORDER BY confirm DESC LIMIT 5'
+        '(select city,confirm from details  ' \
+        'where update_time=(select update_time from details order by update_time desc limit 1) ' \
+        'and province not in ("北京","上海","天津","重庆","香港","台湾") ' \
+        'union all ' \
+        'select province as city,sum(confirm) as confirm from details  ' \
+        'where update_time=(select update_time from details order by update_time desc limit 1) ' \
+        'and province in ("北京","上海","天津","重庆","香港","台湾") group by province) as a ' \
+        'ORDER BY confirm DESC LIMIT 5'
     res = query(sql)
+    # print(res)
     return res
 
 #返回最近的20条热搜
