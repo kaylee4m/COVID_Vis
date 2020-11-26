@@ -4,7 +4,7 @@ var ec_right1_option = {
 
 	//标题样式
 	title : {
-	    text : "城市确诊TOP3",
+	    text : "城市确诊TOP5",
 	    textStyle : {
 	        color : 'black',
 	    },

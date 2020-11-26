@@ -78,7 +78,7 @@ def get_l2_data():
     return res
 
 
-#返回城市确诊人数前3名
+#返回城市确诊人数前5名
 def get_r1_data():
 
     sql = 'SELECT city,confirm FROM ' \
@@ -89,7 +89,7 @@ def get_r1_data():
         'select province as city,sum(confirm) as confirm from details  ' \
         'where update_time=(select update_time from details order by update_time desc limit 1) ' \
         'and province in ("北京","上海","天津","重庆","香港","台湾") group by province) as a ' \
-        'ORDER BY confirm DESC LIMIT 3'
+        'ORDER BY confirm DESC LIMIT 5'
     res = query(sql)
     # print(res)
     return res

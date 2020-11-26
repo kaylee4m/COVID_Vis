@@ -63,7 +63,7 @@ body {
 	width: 60%;
 	height: 60%;
 	top: 30%;
-	left: 30%;
+	left: 25%;
 	background:white;
 }
 
@@ -71,8 +71,8 @@ body {
 	position: absolute;
 	width: 35%;
 	height: 45%;
-	top: 100%;
-	left: 0%;
+	top: 102%;
+	left: 10%;
 	/* background: white; */
 }
 
