@@ -5,10 +5,11 @@ var ec_left1_Option = {
 	//标题样式
 	title: {
 		text: "全国累计趋势",
+
 		textStyle: {
 			color: 'black',
 		},
-		left: 'left',
+		left: 'left', 
 	},
 	tooltip: {
 		trigger: 'axis',
@@ -25,13 +26,13 @@ var ec_left1_Option = {
 		left: "right"
 	},
 
-	//图形位置
+	// 图形位置
 	// grid: {
-	// 	left: '4%',
-	// 	right: '6%',
-	// 	bottom: '4%',
-	// 	top: 50,
-	// 	containLabel: true
+		// left: '4%',
+		// right: '6%',
+		// bottom: '4%',
+		// top: 50,
+		// containLabel: true
 	// },
 	xAxis: [{
 		type: 'category',

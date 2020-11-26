@@ -1,10 +1,10 @@
 var ec_right1 = echarts.init(document.getElementById('r1'));
 var ec_right1_option = {
-	backgroundColor:'white',
+	// backgroundColor:'white',
 
 	//标题样式
 	title : {
-	    text : "城市确诊TOP5",
+	    text : "城市确诊TOP3",
 	    textStyle : {
 	        color : 'black',
 	    },
@@ -22,7 +22,16 @@ var ec_right1_option = {
         data: []
     },
     yAxis: {
-        type: 'value'
+		// type: 'value'
+		axisLabel : {
+
+            formatter: function(){
+
+                  return "";
+
+            }
+
+        }
     },
     series: [{
         data: [],
