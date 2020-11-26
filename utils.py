@@ -66,13 +66,11 @@ def get_c2_data():
 
 
 def get_l1_data():
-
     sql = "select ds,confirm,suspect,heal,dead from history"
     res = query(sql)
     return res
 
 def get_l2_data():
-
     sql = "select ds,confirm_add,suspect_add from history"
     res = query(sql)
     return res
@@ -94,11 +92,7 @@ def get_r1_data():
     # print(res)
     return res
 
-#返回最近的20条热搜
-def get_r2_data():
-    sql = 'select content from hotsearch order by id desc limit 20'
-    res = query(sql)  # 格式 (('民警抗疫一线奋战16天牺牲1037364',), ('四川再派两批医疗队1537382',)
-    return res
+
 
 
 
